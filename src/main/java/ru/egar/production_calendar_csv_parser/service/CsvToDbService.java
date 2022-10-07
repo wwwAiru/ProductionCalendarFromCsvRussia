@@ -31,7 +31,6 @@ public class CsvToDbService {
 
         while ((nextLine = reader.readNext()) != null) {
             if (nextLine != null) {
-//                List<String> line = List.of(nextLine);
                 String year = nextLine[0];
                 for (int i = 1; i<=12; i++){
                     int month = i;
