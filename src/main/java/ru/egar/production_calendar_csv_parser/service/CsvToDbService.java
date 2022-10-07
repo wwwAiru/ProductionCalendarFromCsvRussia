@@ -23,24 +23,19 @@ public class CsvToDbService {
     @PostConstruct
     public void createProductionCalendar() throws Exception
     {
-        //Build reader instance
-        //Read data.csv
-        //Default seperator is comma
-        //Default quote character is double quote
-        //Start reading from line number 2 (line numbers start from zero)
+
         CSVReader reader = new CSVReader(new FileReader(ResourceUtils.getFile(ResourceUtils
                 .CLASSPATH_URL_PREFIX.concat("data.csv"))), ',' , '"' , 1);
-        //Read CSV line by line and use the string array as you want
         String[] nextLine;
         weekendAndShortDayRepository.deleteAll();
 
         while ((nextLine = reader.readNext()) != null) {
             if (nextLine != null) {
-                List<String> line = List.of(nextLine);
-                String year = line.get(0);
+//                List<String> line = List.of(nextLine);
+                String year = nextLine[0];
                 for (int i = 1; i<=12; i++){
                     int month = i;
-                    List<String> days = List.of(line.get(i).split(","));
+                    List<String> days = List.of(nextLine[i].split(","));
                     for (int day=0; day<=days.size()-1; day++) {
                         String someDay = days.get(day);
                         // '+' это перенесённый праздничный день
